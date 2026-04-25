@@ -21,7 +21,7 @@ const RoleCard = ({ role, title, description, icon: Icon, onClick }: RoleCardPro
     blur="md"
     hoverable
     onClick={() => onClick(role)}
-    className="p-8 flex flex-col items-center text-center gap-4 w-full max-w-sm group"
+    className="p-6 sm:p-8 flex flex-col items-center text-center gap-3 sm:gap-4 w-full max-w-sm group"
   >
     <div className="p-4 rounded-full bg-indigo-500/10 text-indigo-400 group-hover:bg-indigo-500 group-hover:text-white transition-all duration-300 shadow-lg shadow-indigo-500/20">
       <Icon size={48} />
@@ -65,14 +65,15 @@ export default function AuthPage() {
             exit={{ opacity: 0, scale: 0.9, y: -20 }}
             className="flex flex-col items-center gap-12 w-full max-w-4xl"
           >
-            <div className="text-center space-y-4">
-              <h1 className="text-5xl md:text-7xl font-black text-gradient uppercase tracking-tighter">
-                Оберіть Свій Шлях
+            <div className="text-center space-y-3 sm:space-y-4">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-gradient uppercase tracking-tighter leading-none px-2">
+                Оберіть <br className="sm:hidden" /> Свій Шлях
               </h1>
-              <p className="text-slate-400 text-xl font-light">Розпочніть подорож у світ знань сьогодні</p>
+              <p className="text-slate-400 text-base sm:text-xl font-light">Розпочніть подорож у світ знань сьогодні</p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8 w-full px-4">
+            <div className="grid sm:grid-cols-2 gap-4 sm:gap-8 w-full px-4">
+
               <RoleCard
                 role="teacher"
                 title="Наставник"

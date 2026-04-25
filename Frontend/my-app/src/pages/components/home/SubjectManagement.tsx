@@ -137,15 +137,21 @@ export const SubjectManagement = () => {
   };
 
   return (
-    <div className="space-y-8">
-      <div className="flex justify-between items-center uppercase">
-        <h2 className="text-3xl font-black text-white tracking-tighter text-gradient">Мої Предмети</h2>
+    <div className="space-y-6 sm:space-y-8">
+      <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4">
+        <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tighter text-gradient uppercase">Мої Предмети</h2>
         {user?.role === 'teacher' ? (
-          <Button onClick={() => setShowCreateModal(true)} className="gap-2"><Plus size={20} /> Створити предмет</Button>
+          <Button onClick={() => setShowCreateModal(true)} className="gap-2 px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl shrink-0">
+            <Plus size={18} /> <span className="text-xs sm:text-sm">Створити предмет</span>
+          </Button>
         ) : (
-          <Button onClick={() => setShowJoinModal(true)} variant="secondary" className="gap-2"><Key size={20} /> Приєднатися до предмету</Button>
+          <Button onClick={() => setShowJoinModal(true)} variant="secondary" className="gap-2 px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl shrink-0">
+            <Key size={18} /> <span className="text-xs sm:text-sm">Приєднатися</span>
+          </Button>
         )}
       </div>
+
+
 
       {loading ? (
         <div className="flex justify-center p-20"><Loader2 className="animate-spin text-indigo-500" size={48} /></div>
@@ -158,18 +164,22 @@ export const SubjectManagement = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {subjects.map((subject) => (
             <Link key={subject._id} href={`/${user?.role}/courses/${subject._id}`}>
-              <Card blur="md" hoverable className="p-6 group flex flex-col justify-between h-full cursor-pointer relative overflow-hidden">
+              <Card blur="md" hoverable className="p-5 sm:p-6 group flex flex-col justify-between h-full cursor-pointer relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/5 blur-3xl rounded-full -mr-16 -mt-16 group-hover:bg-indigo-500/10 transition-colors" />
                 <div className="space-y-4 relative z-10">
-                  <div className="flex justify-between items-start">
-                    <div className="p-3 bg-indigo-500/10 rounded-2xl text-indigo-400 group-hover:bg-indigo-500 group-hover:text-white transition-all shadow-lg shadow-indigo-500/5"><BookOpen size={24} /></div>
+                  <div className="flex justify-between items-start gap-2">
+                    <div className="p-2.5 sm:p-3 bg-indigo-500/10 rounded-xl sm:rounded-2xl text-indigo-400 group-hover:bg-indigo-500 group-hover:text-white transition-all shadow-lg shadow-indigo-500/5 shrink-0"><BookOpen size={20} className="sm:w-6 sm:h-6" /></div>
                     {user?.role === 'teacher' && (
-                      <div className="flex items-center gap-2">
-                        <div className="flex flex-col items-end gap-1"><span className="text-[10px] font-black text-slate-500 uppercase tracking-widest leading-none">Код доступу</span><code className="bg-white/5 px-3 py-1 rounded-lg text-indigo-400 font-mono font-bold border border-white/5">{subject.joinCode}</code></div>
-                        <button onClick={(e) => handleDelete(e, subject._id)} className="p-2 text-slate-600 hover:text-red-500 hover:bg-red-500/10 rounded-xl transition-all" title="Видалити предмет"><Trash2 size={18} /></button>
+                      <div className="flex items-center gap-2 min-w-0">
+                        <div className="flex flex-col items-end gap-0.5 min-w-0">
+                          <span className="text-[8px] sm:text-[10px] font-black text-slate-500 uppercase tracking-widest leading-none truncate w-full text-right">Код доступу</span>
+                          <code className="bg-white/5 px-2 py-0.5 sm:px-3 sm:py-1 rounded-lg text-indigo-400 font-mono font-bold border border-white/5 text-xs sm:text-sm">{subject.joinCode}</code>
+                        </div>
+                        <button onClick={(e) => handleDelete(e, subject._id)} className="p-1.5 sm:p-2 text-slate-600 hover:text-red-500 hover:bg-red-500/10 rounded-xl transition-all shrink-0" title="Видалити предмет"><Trash2 size={16} sm:size={18} /></button>
                       </div>
                     )}
                   </div>
+
                   <div className="space-y-1">
                     <h3 className="text-xl font-bold text-white group-hover:text-indigo-400 transition-colors uppercase tracking-tight">{subject.name}</h3>
                     <p className="text-sm text-slate-500 line-clamp-2 leading-relaxed">{subject.description || 'Опис відсутній'}</p>

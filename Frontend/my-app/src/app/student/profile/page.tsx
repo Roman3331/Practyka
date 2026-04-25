@@ -12,7 +12,8 @@ export default function StudentProfilePage() {
       <SideBar items={studentNavItems} />
       <div className="flex-1 flex flex-col">
         <Header title="Мій Профіль" />
-        <main className="p-8 overflow-y-auto">
+        <main className="p-4 sm:p-8">
+
           <Profile />
         </main>
       </div>

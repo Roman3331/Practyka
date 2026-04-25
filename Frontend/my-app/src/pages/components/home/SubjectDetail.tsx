@@ -244,37 +244,44 @@ export const SubjectDetail = ({ id }: SubjectDetailProps) => {
         onClose={() => setViewingResultsTest(null)} 
         test={viewingResultsTest} 
       />
-      <div className="flex flex-col md:flex-row gap-8 items-start justify-between">
-        <div className="space-y-6">
+      <div className="flex flex-col xl:flex-row gap-6 sm:gap-8 items-start justify-between">
+        <div className="space-y-4 sm:space-y-6 w-full xl:max-w-3xl">
           <Link href={`/${user?.role}/courses`} className="flex items-center gap-2 text-slate-500 hover:text-white transition-colors group">
-            <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-            <span className="text-[10px] font-black uppercase tracking-widest">Назад до списку</span>
+            <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
+            <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest">Назад до списку</span>
           </Link>
-          <div className="space-y-2">
-            <h1 className="text-6xl font-black text-white uppercase tracking-tighter text-gradient leading-[0.9]">{subject.name}</h1>
-            <p className="text-slate-400 max-w-2xl text-lg leading-relaxed">{subject.description || 'Опис предмета відсутній.'}</p>
+          <div className="space-y-2 sm:space-y-3">
+            <h1 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-black text-white uppercase tracking-tighter text-gradient leading-tight sm:leading-[0.9] break-words">
+              {subject.name}
+            </h1>
+            <p className="text-slate-400 max-w-2xl text-xs sm:text-lg leading-relaxed">
+              {subject.description || 'Опис предмета відсутній.'}
+            </p>
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-4">
+
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full xl:w-auto">
           {user?.role === 'teacher' && (
-            <Card blur="sm" className="px-6 py-4 flex items-center gap-6 border-indigo-500/20 bg-indigo-500/5 shadow-2xl hover:border-indigo-500/40 transition-all">
-              <div className="space-y-1">
-                <p className="text-[10px] font-black text-indigo-400 uppercase tracking-widest">Код приєднання</p>
-                <code className="text-2xl font-mono font-bold text-white tracking-[0.2em]">{subject.joinCode}</code>
+            <Card blur="sm" className="px-4 py-3 sm:px-6 sm:py-4 flex flex-1 sm:flex-none items-center justify-between sm:justify-start gap-4 sm:gap-6 border-indigo-500/20 bg-indigo-500/5 shadow-2xl hover:border-indigo-500/40 transition-all">
+              <div className="space-y-0.5 sm:space-y-1">
+                <p className="text-[8px] sm:text-[10px] font-black text-indigo-400 uppercase tracking-widest">Код приєднання</p>
+                <code className="text-lg sm:text-2xl font-mono font-bold text-white tracking-[0.1em] sm:tracking-[0.2em]">{subject.joinCode}</code>
               </div>
-              <Button size="sm" variant="ghost" className="p-3 bg-white/5 rounded-xl"><Share2 size={20} /></Button>
+              <Button size="sm" variant="ghost" className="p-1.5 sm:p-3 bg-white/5 rounded-lg sm:rounded-xl"><Share2 size={16} className="sm:w-[18px] sm:h-[18px]" /></Button>
             </Card>
           )}
-          <Card blur="sm" className="px-6 py-4 flex items-center gap-6 bg-white/5 border-white/10 shadow-2xl">
-            <div className="p-3 bg-indigo-500/10 rounded-2xl text-indigo-400"><Users size={24} /></div>
-            <div className="space-y-1">
-              <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Учнів</p>
-              <p className="text-2xl font-black text-white">{subject.studentIds?.length || 0}</p>
+          <Card blur="sm" className="px-4 py-3 sm:px-6 sm:py-4 flex flex-1 sm:flex-none items-center gap-4 sm:gap-6 bg-white/5 border-white/10 shadow-2xl">
+            <div className="p-1.5 sm:p-3 bg-indigo-500/10 rounded-lg sm:rounded-2xl text-indigo-400 shrink-0"><Users size={18} className="sm:w-6 sm:h-6" /></div>
+            <div className="space-y-0.5 sm:space-y-1">
+              <p className="text-[8px] sm:text-[10px] font-black text-slate-500 uppercase tracking-widest">Учнів</p>
+              <p className="text-lg sm:text-2xl font-black text-white">{subject.studentIds?.length || 0}</p>
             </div>
           </Card>
         </div>
+
       </div>
+
 
       <Tabs tabs={tabs} />
 
@@ -548,7 +555,7 @@ const Feed = ({ subject, onUpdate, onOpenTask, onOpenPreview }: any) => {
   return (
     <div className="max-w-4xl mx-auto space-y-10 mt-8">
       {user?.role === 'teacher' && (
-        <Card blur="lg" className="p-6 border-indigo-500/10 overflow-hidden relative">
+        <Card blur="lg" className="p-4 sm:p-6 border-indigo-500/10 overflow-hidden relative">
           <form onSubmit={handlePost} className="space-y-4">
             <div className="flex gap-4">
               <div className="w-12 h-12 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold shadow-lg shadow-indigo-500/20 overflow-hidden border-2 border-white/10">
@@ -582,8 +589,8 @@ const Feed = ({ subject, onUpdate, onOpenTask, onOpenPreview }: any) => {
           <SectionPlaceholder icon={MessageSquare} title="Стрічка порожня" subtitle="Тут з'являтимуться всі новини, завдання та оголошення" />
         ) : (
           feedItems.map((item: any) => (
-            <div key={item._id} className="relative pl-16">
-                <div className={`absolute left-0 top-1 w-12 h-12 rounded-full flex items-center justify-center border-4 border-slate-950 z-10 ${
+            <div key={item._id} className="relative pl-12 sm:pl-16">
+                <div className={`absolute left-0 top-1 w-9 h-9 sm:w-12 sm:h-12 rounded-full flex items-center justify-center border-2 sm:border-4 border-slate-950 z-10 ${
                   item.feedType === 'announcement' ? 'bg-indigo-500 text-white' : 
                   item.feedType === 'material' ? 'bg-emerald-500 text-white' : 
                   item.feedType === 'test' ? 'bg-amber-500 text-white' : 'bg-purple-500 text-white'
@@ -1070,7 +1077,7 @@ const SectionPlaceholder = ({ icon: Icon, title, subtitle }: any) => (
 
 const ParticipantsList = ({ subject }: any) => (
   <Card blur="lg" className="divide-y divide-white/5 overflow-hidden shadow-2xl">
-    <div className="p-8 bg-white/5 flex items-center justify-between">
+    <div className="p-5 sm:p-8 bg-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
       <h3 className="font-black text-white flex items-center gap-3 uppercase tracking-tighter text-xl">
         <Users size={24} className="text-indigo-400" />
         Склад групи
@@ -1081,10 +1088,10 @@ const ParticipantsList = ({ subject }: any) => (
         </span>
       </div>
     </div>
-    <div className="p-6">
+    <div className="p-4 sm:p-6">
       <div className="grid md:grid-cols-2 gap-6">
         {(subject.students || []).map((student: any) => (
-          <div key={student._id} className="flex items-center gap-5 p-5 rounded-3xl bg-white/5 hover:bg-white/10 transition-all border border-white/5 group relative overflow-hidden">
+          <div key={student._id} className="flex items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl sm:rounded-3xl bg-white/5 hover:bg-white/10 transition-all border border-white/5 group relative overflow-hidden">
             <div className="absolute top-0 left-0 w-1 h-full bg-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity" />
             
             <div className="w-16 h-16 rounded-2xl bg-slate-800 flex items-center justify-center text-indigo-400 border border-indigo-500/20 font-black text-xl transition-all group-hover:scale-105 shadow-2xl relative overflow-hidden">

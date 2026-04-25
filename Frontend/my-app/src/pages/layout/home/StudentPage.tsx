@@ -99,36 +99,37 @@ export const StudentPage = () => {
     <div className="flex min-h-screen gradient-bg">
       <SideBar items={studentNavItems} />
 
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col min-w-0">
         <Header title="Мій Кабінет" />
 
-        <main className="p-8 space-y-8 overflow-y-auto">
+        <main className="p-4 sm:p-8 space-y-6 sm:space-y-8">
           {/* Welcome Banner */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="relative overflow-hidden p-10 rounded-[2.5rem] bg-indigo-600 shadow-2xl shadow-indigo-500/20"
+            className="relative overflow-hidden p-6 sm:p-10 rounded-3xl sm:rounded-[2.5rem] bg-indigo-600 shadow-2xl shadow-indigo-500/20"
           >
             <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-white/10 to-transparent pointer-events-none" />
             <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-white/5 rounded-full blur-3xl pointer-events-none" />
             
-            <div className="relative z-10 space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full text-[10px] font-black uppercase tracking-widest text-white">
-                <Zap size={12} fill="currentColor" /> Твій успіх залежить від тебе
+            <div className="relative z-10 space-y-3 sm:space-y-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-white">
+                <Zap size={10} fill="currentColor" /> Твій успіх залежить від тебе
               </div>
-              <h1 className="text-5xl font-black text-white uppercase tracking-tighter leading-none">
-                {getTimeGreeting()}, {user?.name?.split(' ')[0]}!
+              <h1 className="text-3xl sm:text-5xl font-black text-white uppercase tracking-tighter leading-none">
+                {getTimeGreeting()}, <br className="sm:hidden" /> {user?.name?.split(' ')[0]}!
               </h1>
-              <p className="text-indigo-100 max-w-md text-lg font-medium">
-                Сьогодні у тебе <span className="text-white font-bold">{todaySchedule.length} занять</span> та <span className="text-white font-bold">{pendingAssignments.length} активних завдань</span>. Бажаємо успіхів у навчанні!
+              <p className="text-indigo-100 max-w-md text-sm sm:text-lg font-medium leading-relaxed">
+                Сьогодні у тебе <span className="text-white font-bold">{todaySchedule.length} занять</span> та <span className="text-white font-bold">{pendingAssignments.length} активних завдань</span>.
               </p>
             </div>
           </motion.div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid lg:grid-cols-3 gap-6 sm:gap-8">
             {/* Left Column: Stats & Schedule */}
-            <div className="lg:col-span-2 space-y-8">
-              <div className="grid sm:grid-cols-2 gap-6">
+            <div className="lg:col-span-2 space-y-6 sm:space-y-8">
+              <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+
                 <StatCard icon={Book} label="Виконано" value={completedCount} total={assignments.length} color="bg-blue-500" />
                 <StatCard icon={Star} label="Середній бал" value={avgGrade} color="bg-amber-500" subLabel="Навчальний прогрес" />
               </div>

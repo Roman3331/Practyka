@@ -86,50 +86,51 @@ export const TeacherPage = () => {
     <div className="flex min-h-screen gradient-bg">
       <SideBar items={teacherNavItems} />
 
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col min-w-0">
         <Header title="Кабінет Викладача" />
 
-        <main className="p-8 space-y-8 overflow-y-auto">
+        <main className="p-4 sm:p-8 space-y-6 sm:space-y-8">
           {/* Teacher Welcome Banner */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="relative overflow-hidden p-10 rounded-[2.5rem] bg-slate-900 border border-white/5 shadow-2xl"
+            className="relative overflow-hidden p-6 sm:p-10 rounded-3xl sm:rounded-[2.5rem] bg-slate-900 border border-white/5 shadow-2xl"
           >
             <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-indigo-500/10 via-transparent to-purple-500/10 pointer-events-none" />
             <div className="absolute -right-20 -top-20 w-80 h-80 bg-indigo-500/5 rounded-full blur-3xl pointer-events-none" />
             
-            <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-8">
-              <div className="space-y-4 text-center md:text-left">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-500/10 rounded-full text-[10px] font-black uppercase tracking-widest text-indigo-400 border border-indigo-500/20">
+            <div className="relative z-10 flex flex-col xl:flex-row justify-between items-center gap-6 sm:gap-8 text-center xl:text-left">
+              <div className="space-y-3 sm:space-y-4">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-500/10 rounded-full text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-indigo-400 border border-indigo-500/20">
                   <GraduationCap size={12} /> Центр керування навчанням
                 </div>
-                <h1 className="text-5xl font-black text-white uppercase tracking-tighter leading-none">
-                  {getTimeGreeting()}, <span className="text-indigo-400">{user?.name?.split(' ')[0]}</span>!
+                <h1 className="text-3xl sm:text-5xl font-black text-white uppercase tracking-tighter leading-none">
+                  {getTimeGreeting()}, <br className="sm:hidden" /> <span className="text-indigo-400">{user?.name?.split(' ')[0]}</span>!
                 </h1>
-                <p className="text-slate-400 max-w-md text-lg font-medium">
+                <p className="text-slate-400 max-w-md text-sm sm:text-lg font-medium leading-relaxed">
                   Сьогодні у вас <span className="text-white font-bold">{teachersLessons.length} занять</span> та <span className="text-white font-bold">{pendingGrading} робіт</span> на перевірку.
                 </p>
               </div>
 
-              <div className="flex gap-4">
-                <Link href="/teacher/courses">
-                   <Button className="px-8 py-6 rounded-2xl gap-3 shadow-indigo-500/20">
-                      <Plus size={20} /> Створити курс
+              <div className="flex flex-wrap justify-center gap-3 sm:gap-4 w-full xl:w-auto">
+                <Link href="/teacher/courses" className="flex-1 sm:flex-none">
+                   <Button className="w-full px-6 sm:px-8 py-4 sm:py-6 rounded-2xl gap-2 sm:gap-3 shadow-indigo-500/20">
+                      <Plus size={18} /> <span className="text-xs sm:text-sm">Створити курс</span>
                    </Button>
                 </Link>
-                <Link href="/teacher/schedule">
-                   <Button variant="secondary" className="px-8 py-6 rounded-2xl gap-3">
-                      <CalendarDays size={20} /> Розклад
+                <Link href="/teacher/schedule" className="flex-1 sm:flex-none">
+                   <Button variant="secondary" className="w-full px-6 sm:px-8 py-4 sm:py-6 rounded-2xl gap-2 sm:gap-3">
+                      <CalendarDays size={18} /> <span className="text-xs sm:text-sm">Розклад</span>
                    </Button>
                 </Link>
               </div>
             </div>
           </motion.div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2 space-y-8">
-               <div className="grid sm:grid-cols-3 gap-6">
+          <div className="grid lg:grid-cols-3 gap-6 sm:gap-8">
+            <div className="lg:col-span-2 space-y-6 sm:space-y-8">
+               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+
                  <StatCard icon={Users} label="Учнів всього" value={totalStudents} color="bg-blue-500" subLabel="Активні студенти" />
                  <StatCard icon={BookOpen} label="Предмети" value={subjects.length} color="bg-purple-500" subLabel="Твої курси" />
                  <StatCard icon={BarChart3} label="До перевірки" value={pendingGrading} color="bg-rose-500" subLabel="Очікують оцінки" />

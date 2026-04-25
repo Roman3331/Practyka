@@ -96,26 +96,27 @@ export const SchedulePage = () => {
     <div className="flex min-h-screen gradient-bg">
       <SideBar items={navItems} />
 
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col min-w-0">
         <Header title="Розклад занять" />
 
-        <main className="p-8 space-y-8 overflow-y-auto">
-          <div className="flex flex-col md:flex-row gap-6 justify-between items-start">
-            <div className="relative w-full max-w-md group">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-indigo-400 transition-colors" size={20} />
+        <main className="p-4 sm:p-8 space-y-6 sm:space-y-8">
+          <div className="flex flex-col md:flex-row gap-4 sm:gap-6 justify-between items-stretch sm:items-start">
+            <div className="relative w-full max-w-md group order-2 md:order-1">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-indigo-400 transition-colors" size={18} />
               <Input 
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Пошук за класом (напр. 4-А)..."
-                className="pl-12 bg-white/5 border-white/10 focus:border-indigo-500/50 h-12 rounded-2xl"
+                className="pl-12 bg-white/5 border-white/10 focus:border-indigo-500/50 h-11 sm:h-12 rounded-xl sm:rounded-2xl text-sm"
               />
             </div>
             {isTeacher && (
-              <Button onClick={() => { setEditingSchedule(null); setIsModalOpen(true); }} className="gap-3 shadow-indigo-500/20 px-8 py-6 rounded-2xl">
-                <Plus size={20} /> Створити розклад
+              <Button onClick={() => { setEditingSchedule(null); setIsModalOpen(true); }} className="gap-3 shadow-indigo-500/20 px-6 sm:px-8 py-4 sm:py-6 rounded-xl sm:rounded-2xl order-1 md:order-2">
+                <Plus size={20} /> <span className="sm:inline">Створити розклад</span>
               </Button>
             )}
           </div>
+
 
           {loading ? (
             <div className="flex h-[40vh] items-center justify-center">
@@ -170,7 +171,8 @@ export const SchedulePage = () => {
                     </div>
 
                     {/* Day Selector */}
-                    <div className="flex flex-wrap gap-1.5 mb-6 relative z-10">
+                    <div className="flex flex-wrap sm:flex-nowrap sm:overflow-x-auto gap-1.5 mb-6 relative z-10 custom-scrollbar pb-1">
+
                       {DAYS_ORDER.map((day) => {
                         const isSelected = selectedDay === day;
                         const hasLessons = (schedule.days.find((d: any) => d.day === day)?.lessons?.length || 0) > 0;

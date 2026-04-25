@@ -28,26 +28,27 @@ export const ConfirmModal = () => {
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="relative w-full max-w-md bg-slate-900 border border-white/10 rounded-3xl shadow-2xl overflow-hidden"
+          className="relative w-full max-w-md bg-slate-900 border border-white/10 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden"
         >
-          <div className="p-8 space-y-6">
+          <div className="p-6 sm:p-8 space-y-6">
             <div className="flex flex-col items-center text-center space-y-4">
-              <div className={`p-4 rounded-2xl ${
+              <div className={`p-3 sm:p-4 rounded-xl sm:rounded-2xl ${
                 isDanger ? 'bg-red-500/10 text-red-400' : 
                 isInfo ? 'bg-blue-500/10 text-blue-400' : 'bg-indigo-500/10 text-indigo-400'
               }`}>
-                {isDanger ? <AlertCircle size={32} /> : 
-                 isInfo ? <Info size={32} /> : <CheckCircle2 size={32} />}
+                {isDanger ? <AlertCircle size={28} className="sm:w-8 sm:h-8" /> : 
+                 isInfo ? <Info size={28} className="sm:w-8 sm:h-8" /> : <CheckCircle2 size={28} className="sm:w-8 sm:h-8" />}
               </div>
               <div className="space-y-2">
-                <h3 className="text-2xl font-black text-white uppercase tracking-tighter leading-none">
+                <h3 className="text-xl sm:text-2xl font-black text-white uppercase tracking-tighter leading-tight">
                   {options.title || (options.isAlert ? 'Сповіщення' : 'Підтвердження')}
                 </h3>
-                <p className="text-slate-400 text-sm font-medium leading-relaxed">
+                <p className="text-slate-400 text-xs sm:text-sm font-medium leading-relaxed">
                   {options.message}
                 </p>
               </div>
             </div>
+
 
             <div className="flex gap-3 pt-2">
               {!options.isAlert && (

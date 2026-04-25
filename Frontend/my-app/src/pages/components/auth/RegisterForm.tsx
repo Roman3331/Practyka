@@ -70,7 +70,7 @@ export const RegisterForm = ({ selectedRole, onSuccess }: RegisterFormProps) => 
         </motion.div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Input
           name="firstName"
           placeholder="Ім'я"
@@ -93,9 +93,10 @@ export const RegisterForm = ({ selectedRole, onSuccess }: RegisterFormProps) => 
           icon={UserIcon}
           value={form.middleName}
           onChange={handleChange}
-          containerClassName="md:col-span-2"
+          containerClassName="sm:col-span-2"
         />
       </div>
+
 
       <Input
         name="email"

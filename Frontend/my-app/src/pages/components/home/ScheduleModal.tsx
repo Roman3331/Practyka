@@ -88,25 +88,26 @@ export const ScheduleModal = ({ isOpen, onClose, onSubmit, initialData }: Schedu
           className="relative w-full max-w-6xl h-[90vh] flex flex-col overflow-hidden"
         >
           <Card blur="xl" className="flex flex-col h-full border-white/10 shadow-2xl overflow-hidden">
-            <div className="p-6 border-b border-white/5 flex items-center justify-between bg-white/5 shrink-0">
-              <div className="flex items-center gap-4">
-                <div className="p-3 bg-indigo-500/10 rounded-2xl text-indigo-400">
-                  <Clock size={24} />
+            <div className="p-4 sm:p-6 border-b border-white/5 flex items-center justify-between bg-white/5 shrink-0">
+              <div className="flex items-center gap-3 sm:gap-4">
+                <div className="p-2 sm:p-3 bg-indigo-500/10 rounded-xl sm:rounded-2xl text-indigo-400">
+                  <Clock size={20} className="sm:w-6 sm:h-6" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-black text-white uppercase tracking-tighter">
+                  <h2 className="text-xl sm:text-2xl font-black text-white uppercase tracking-tighter leading-tight">
                     {initialData ? 'Редагувати розклад' : 'Створити розклад'}
                   </h2>
-                  <p className="text-slate-500 text-xs font-bold uppercase tracking-widest">Налаштування занять на семестр</p>
+                  <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest">Налаштування занять на семестр</p>
                 </div>
               </div>
-              <button onClick={onClose} className="p-2 hover:bg-white/5 rounded-xl transition-colors text-slate-500 hover:text-white">
-                <X size={24} />
+              <button onClick={onClose} className="p-2 hover:bg-white/5 rounded-xl transition-colors text-slate-500 hover:text-white shrink-0 ml-4">
+                <X size={20} className="sm:w-6 sm:h-6" />
               </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-8 space-y-8 custom-scrollbar min-h-0">
-              <div className="grid md:grid-cols-3 gap-6">
+            <div className="flex-1 overflow-y-auto p-4 sm:p-8 space-y-6 sm:space-y-8 custom-scrollbar min-h-0">
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 <div className="space-y-2">
                   <p className="text-[10px] font-black text-indigo-400 uppercase tracking-[0.2em]">Назва класу</p>
                   <Input 

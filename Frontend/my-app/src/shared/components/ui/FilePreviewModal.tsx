@@ -17,24 +17,25 @@ export const FilePreviewModal = ({ file, onClose }: FilePreviewModalProps) => {
   const isPDF = file.type === 'application/pdf' || file.url.toLowerCase().endsWith('.pdf');
 
   return (
-    <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 md:p-8 bg-slate-950/90 backdrop-blur-xl">
+    <div className="fixed inset-0 z-[200] flex items-center justify-center p-2 sm:p-4 md:p-8 bg-slate-950/90 backdrop-blur-xl">
       <motion.div 
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.9 }}
-        className="w-full h-full max-w-6xl bg-slate-900 rounded-3xl border border-white/10 flex flex-col overflow-hidden shadow-2xl"
+        className="w-full h-full max-w-6xl bg-slate-900 rounded-2xl sm:rounded-3xl border border-white/10 flex flex-col overflow-hidden shadow-2xl"
       >
-        <div className="p-4 border-b border-white/5 flex justify-between items-center bg-white/5">
-          <div className="flex items-center gap-3">
-             <div className="p-2 bg-indigo-500/20 rounded-lg text-indigo-400">
-                <FileIcon size={20} />
+        <div className="p-3 sm:p-4 border-b border-white/5 flex justify-between items-center bg-white/5 shrink-0">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+             <div className="p-1.5 sm:p-2 bg-indigo-500/20 rounded-lg text-indigo-400 shrink-0">
+                <FileIcon size={18} className="sm:w-5 sm:h-5" />
              </div>
-             <h3 className="text-white font-bold uppercase tracking-tight truncate max-w-xs md:max-w-md">{file.name}</h3>
+             <h3 className="text-white text-sm sm:text-base font-bold uppercase tracking-tight truncate max-w-[150px] sm:max-w-md">{file.name}</h3>
           </div>
-          <Button onClick={onClose} variant="ghost" size="sm" className="p-2 text-slate-400 hover:text-white hover:bg-white/10">
-            <XCircle size={24} />
+          <Button onClick={onClose} variant="ghost" size="sm" className="p-1.5 sm:p-2 text-slate-400 hover:text-white hover:bg-white/10 shrink-0 ml-2">
+            <XCircle size={20} className="sm:w-6 sm:h-6" />
           </Button>
         </div>
+
         
         <div className="flex-1 bg-slate-950 relative flex items-center justify-center">
           {isPDF ? (

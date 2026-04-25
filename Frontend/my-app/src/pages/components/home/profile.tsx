@@ -51,37 +51,38 @@ export const Profile = () => {
   };
 
   return (
-    <div className="space-y-8 max-w-4xl mx-auto">
-      <header className="space-y-1">
-        <h1 className="text-4xl font-bold text-white tracking-tight">Мій Профіль</h1>
-        <p className="text-slate-400">Керуйте вашою особистою інформацією</p>
+    <div className="space-y-6 sm:space-y-8 max-w-4xl mx-auto">
+      <header className="space-y-2">
+        <h1 className="text-3xl sm:text-4xl font-black text-white uppercase tracking-tighter text-gradient">Мій Профіль</h1>
+        <p className="text-slate-400 text-sm sm:text-base">Керуйте вашою особистою інформацією</p>
       </header>
 
-      <div className="grid md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+
         <div className="space-y-6">
-          <Card blur="lg" className="p-8 flex flex-col items-center text-center space-y-4">
-            <div className="w-24 h-24 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 border-2 border-indigo-500/30 overflow-hidden relative group shadow-2xl">
+          <Card blur="lg" className="p-6 sm:p-8 flex flex-col items-center text-center space-y-4">
+            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-indigo-500/20 flex items-center justify-center text-indigo-400 border-2 border-indigo-500/30 overflow-hidden relative group shadow-2xl">
               {user?.avatarUrl ? (
                 <img src={user.avatarUrl} alt="Avatar" className="w-full h-full object-cover" />
               ) : (
-                <UserIcon size={48} />
+                <UserIcon size={40} className="sm:w-12 sm:h-12" />
               )}
             </div>
             <div className="space-y-1">
-              <h3 className="text-xl font-bold text-white uppercase">{user?.role}</h3>
-              <p className="text-sm text-slate-400">{user?.firstName} {user?.lastName}</p>
+              <h3 className="text-lg sm:text-xl font-black text-white uppercase tracking-tighter">{user?.role}</h3>
+              <p className="text-xs sm:text-sm text-slate-400 font-medium">{user?.firstName} {user?.lastName}</p>
             </div>
           </Card>
 
-          <Card blur="lg" className="p-6 space-y-4">
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
-              <Shield size={16} className="text-indigo-400" />
+          <Card blur="lg" className="p-5 sm:p-6 space-y-4">
+            <h4 className="text-[10px] sm:text-xs font-black text-white uppercase tracking-[0.2em] flex items-center gap-2">
+              <Shield size={14} className="text-indigo-400" />
               Безпека
             </h4>
             <div className="space-y-3">
               <div className="flex items-center justify-between p-3 bg-white/5 rounded-xl border border-white/5">
-                <span className="text-xs text-slate-400">Статус аккаунта</span>
-                <span className="text-xs font-bold text-emerald-400 flex items-center gap-1">
+                <span className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Статус аккаунта</span>
+                <span className="text-[10px] font-black text-emerald-400 flex items-center gap-1 uppercase tracking-widest">
                   <Check size={12} /> Активний
                 </span>
               </div>
@@ -89,9 +90,9 @@ export const Profile = () => {
           </Card>
         </div>
 
-        <Card blur="lg" className="md:col-span-2 p-10">
+        <Card blur="lg" className="md:col-span-2 p-6 sm:p-10">
           <form onSubmit={handleUpdate} className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <Input
                 label="Ім'я"
                 value={formData.firstName}

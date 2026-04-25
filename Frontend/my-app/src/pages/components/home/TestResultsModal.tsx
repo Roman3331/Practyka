@@ -32,87 +32,124 @@ export const TestResultsModal = ({ isOpen, onClose, test }: TestResultsModalProp
           className="relative w-full max-w-4xl max-h-[85vh] flex flex-col"
         >
           <Card blur="lg" className="flex flex-col border-white/10 shadow-2xl overflow-hidden h-full min-h-0">
-            <div className="p-6 border-b border-white/5 flex justify-between items-center bg-white/5 shrink-0">
-              <div className="flex items-center gap-4">
-                <div className="p-3 bg-amber-500/10 rounded-2xl text-amber-400"><Trophy size={24} /></div>
+            <div className="p-4 sm:p-6 border-b border-white/5 flex justify-between items-center bg-white/5 shrink-0">
+              <div className="flex items-center gap-3 sm:gap-4">
+                <div className="p-2 sm:p-3 bg-amber-500/10 rounded-xl sm:rounded-2xl text-amber-400">
+                  <Trophy size={20} className="sm:w-6 sm:h-6" />
+                </div>
                 <div>
-                   <h2 className="text-2xl font-black text-white uppercase tracking-tighter">Результати: {test.title}</h2>
-                   <p className="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em]">Всього здано: {results.length} робіт</p>
+                   <h2 className="text-xl sm:text-2xl font-black text-white uppercase tracking-tighter leading-tight">Результати: {test.title}</h2>
+                   <p className="text-slate-500 text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em]">Всього здано: {results.length} робіт</p>
                 </div>
               </div>
-              <button onClick={onClose} className="p-2 hover:bg-white/10 rounded-xl transition-colors text-slate-400 hover:text-white">
-                <X size={24} />
+              <button onClick={onClose} className="p-2 hover:bg-white/10 rounded-xl transition-colors text-slate-400 hover:text-white shrink-0 ml-4">
+                <X size={20} className="sm:w-6 sm:h-6" />
               </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-6 custom-scrollbar min-h-0">
+            <div className="flex-1 overflow-y-auto p-4 sm:p-6 custom-scrollbar min-h-0">
               {results.length === 0 ? (
-                <div className="p-20 text-center space-y-4">
-                   <div className="w-20 h-20 bg-white/5 rounded-3xl flex items-center justify-center mx-auto text-slate-700 border border-white/5 shadow-inner">
-                     <GraduationCap size={40} />
+                <div className="p-10 sm:p-20 text-center space-y-4">
+                   <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white/5 rounded-3xl flex items-center justify-center mx-auto text-slate-700 border border-white/5 shadow-inner">
+                     <GraduationCap size={32} className="sm:w-10 sm:h-10" />
                    </div>
                    <div className="space-y-1">
-                     <h3 className="text-xl font-black text-white uppercase tracking-tighter">Результатів ще немає</h3>
-                     <p className="text-slate-500 text-sm max-w-xs mx-auto">Жоден учень ще не пройшов цей тест.</p>
+                     <h3 className="text-lg sm:text-xl font-black text-white uppercase tracking-tighter">Результатів ще немає</h3>
+                     <p className="text-slate-500 text-xs sm:text-sm max-w-xs mx-auto">Жоден учень ще не пройшов цей тест.</p>
                    </div>
                 </div>
               ) : (
                 <div className="space-y-4">
-                   <table className="w-full text-left border-separate border-spacing-y-2">
-                      <thead>
-                        <tr>
-                          <th className="px-6 py-3 text-[10px] font-black text-slate-500 uppercase tracking-widest">Учень</th>
-                          <th className="px-6 py-3 text-[10px] font-black text-slate-500 uppercase tracking-widest text-center">Спроба</th>
-                          <th className="px-6 py-3 text-[10px] font-black text-slate-500 uppercase tracking-widest text-center">Оцінка</th>
-                          <th className="px-6 py-3 text-[10px] font-black text-slate-500 uppercase tracking-widest text-center">Дата</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {results.sort((a: any, b: any) => new Date(b.submittedAt).getTime() - new Date(a.submittedAt).getTime()).map((result: any, idx: number) => (
-                          <motion.tr 
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: idx * 0.05 }}
-                            key={idx} 
-                            className="bg-white/5 group hover:bg-white/10 transition-all"
-                          >
-                            <td className="px-6 py-4 rounded-l-2xl border-l border-t border-b border-white/5">
-                               <div className="flex items-center gap-3">
-                                 <div className="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-indigo-400 border border-indigo-500/10 font-bold">
-                                   <User size={18} />
-                                 </div>
-                                 <span className="font-bold text-white">{result.studentName}</span>
+                   {/* Mobile View: Cards */}
+                   <div className="block sm:hidden space-y-3">
+                      {results.sort((a: any, b: any) => new Date(b.submittedAt).getTime() - new Date(a.submittedAt).getTime()).map((result: any, idx: number) => (
+                        <Card key={idx} blur="sm" className="p-4 bg-white/5 border-white/5 space-y-4">
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                               <div className="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-indigo-400 border border-indigo-500/10 font-bold">
+                                 <User size={18} />
                                </div>
-                            </td>
-                            <td className="px-6 py-4 border-t border-b border-white/5 text-center">
-                               <span className="px-3 py-1 bg-white/5 rounded-lg text-xs font-bold text-slate-400 border border-white/5">
-                                 №{result.attemptNumber}
-                               </span>
-                            </td>
-                            <td className="px-6 py-4 border-t border-b border-white/5 text-center">
-                               <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full">
-                                 <span className="text-xl font-black text-emerald-400">{result.score}</span>
-                                 <span className="text-[10px] font-black text-slate-600 uppercase tracking-widest">/ {test.maxGrade}</span>
+                               <div>
+                                 <p className="font-bold text-white text-sm">{result.studentName}</p>
+                                 <p className="text-[9px] font-black text-slate-500 uppercase tracking-widest">Спроба №{result.attemptNumber}</p>
                                </div>
-                            </td>
-                            <td className="px-6 py-4 rounded-r-2xl border-r border-t border-b border-white/5 text-center">
-                               <div className="flex flex-col items-center">
-                                 <span className="text-xs font-bold text-slate-300">{new Date(result.submittedAt).toLocaleDateString()}</span>
-                                 <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">{new Date(result.submittedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                            </div>
+                            <div className="text-right">
+                               <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full">
+                                 <span className="text-lg font-black text-emerald-400">{result.score}</span>
+                                 <span className="text-[9px] font-black text-slate-600 uppercase tracking-widest">/ {test.maxGrade}</span>
                                </div>
-                            </td>
-                          </motion.tr>
-                        ))}
-                      </tbody>
-                   </table>
+                            </div>
+                          </div>
+                          <div className="flex justify-between items-center pt-2 border-t border-white/5">
+                            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Дата здачі</span>
+                            <span className="text-[10px] font-bold text-slate-300 uppercase tracking-widest">
+                              {new Date(result.submittedAt).toLocaleDateString()} {new Date(result.submittedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                            </span>
+                          </div>
+                        </Card>
+                      ))}
+                   </div>
+
+                   {/* Desktop View: Table */}
+                   <div className="hidden sm:block overflow-x-auto">
+                    <table className="w-full text-left border-separate border-spacing-y-2">
+                       <thead>
+                         <tr>
+                           <th className="px-6 py-3 text-[10px] font-black text-slate-500 uppercase tracking-widest">Учень</th>
+                           <th className="px-6 py-3 text-[10px] font-black text-slate-500 uppercase tracking-widest text-center">Спроба</th>
+                           <th className="px-6 py-3 text-[10px] font-black text-slate-500 uppercase tracking-widest text-center">Оцінка</th>
+                           <th className="px-6 py-3 text-[10px] font-black text-slate-500 uppercase tracking-widest text-center">Дата</th>
+                         </tr>
+                       </thead>
+                       <tbody>
+                         {results.sort((a: any, b: any) => new Date(b.submittedAt).getTime() - new Date(a.submittedAt).getTime()).map((result: any, idx: number) => (
+                           <motion.tr 
+                             initial={{ opacity: 0, x: -10 }}
+                             animate={{ opacity: 1, x: 0 }}
+                             transition={{ delay: idx * 0.05 }}
+                             key={idx} 
+                             className="bg-white/5 group hover:bg-white/10 transition-all"
+                           >
+                             <td className="px-6 py-4 rounded-l-2xl border-l border-t border-b border-white/5">
+                                <div className="flex items-center gap-3">
+                                  <div className="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-indigo-400 border border-indigo-500/10 font-bold">
+                                    <User size={18} />
+                                  </div>
+                                  <span className="font-bold text-white">{result.studentName}</span>
+                                </div>
+                             </td>
+                             <td className="px-6 py-4 border-t border-b border-white/5 text-center">
+                                <span className="px-3 py-1 bg-white/5 rounded-lg text-xs font-bold text-slate-400 border border-white/5">
+                                  №{result.attemptNumber}
+                                </span>
+                             </td>
+                             <td className="px-6 py-4 border-t border-b border-white/5 text-center">
+                                <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full">
+                                  <span className="text-xl font-black text-emerald-400">{result.score}</span>
+                                  <span className="text-[10px] font-black text-slate-600 uppercase tracking-widest">/ {test.maxGrade}</span>
+                                </div>
+                             </td>
+                             <td className="px-6 py-4 rounded-r-2xl border-r border-t border-b border-white/5 text-center">
+                                <div className="flex flex-col items-center">
+                                  <span className="text-xs font-bold text-slate-300">{new Date(result.submittedAt).toLocaleDateString()}</span>
+                                  <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">{new Date(result.submittedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                                </div>
+                             </td>
+                           </motion.tr>
+                         ))}
+                       </tbody>
+                    </table>
+                   </div>
                 </div>
               )}
             </div>
 
-            <div className="p-6 border-t border-white/5 bg-white/5 flex justify-end shrink-0">
-              <Button onClick={onClose}>Закрити</Button>
+            <div className="p-4 sm:p-6 border-t border-white/5 bg-white/5 flex justify-end shrink-0">
+              <Button onClick={onClose} className="w-full sm:w-auto">Закрити</Button>
             </div>
           </Card>
+
         </motion.div>
       </div>
     </AnimatePresence>

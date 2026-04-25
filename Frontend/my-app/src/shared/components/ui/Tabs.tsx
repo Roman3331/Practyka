@@ -19,7 +19,7 @@ export const Tabs = ({ tabs, defaultTab }: TabsProps) => {
 
   return (
     <div className="w-full space-y-8">
-      <div className="flex gap-2 p-1.5 bg-white/5 border border-white/10 rounded-2xl w-fit">
+      <div className="flex gap-1.5 sm:gap-2 p-1 sm:p-1.5 bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl w-full sm:w-fit overflow-x-auto custom-scrollbar">
         {tabs.map((tab) => {
           const isActive = activeTab === tab.id;
           return (

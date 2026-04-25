@@ -204,42 +204,42 @@ export const AssignmentDetailModal = ({
       {isOpen && (
         <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose} className="absolute inset-0 bg-slate-950/90 backdrop-blur-2xl" />
-          <motion.div initial={{ opacity: 0, scale: 0.95, y: 30 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 30 }} className="relative w-full max-w-6xl h-[85vh] flex overflow-hidden lg:flex-row flex-col shadow-2xl rounded-3xl border border-white/10">
-            <div className="flex-1 bg-white/5 p-8 overflow-y-auto border-r border-white/10 custom-scrollbar relative">
+          <motion.div initial={{ opacity: 0, scale: 0.95, y: 30 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 30 }} className="relative w-full max-w-6xl h-[90vh] sm:h-[85vh] flex overflow-hidden lg:flex-row flex-col shadow-2xl rounded-2xl sm:rounded-3xl border border-white/10 mx-auto">
+            <div className="flex-1 bg-white/5 p-4 sm:p-8 overflow-y-auto border-r border-white/10 custom-scrollbar relative">
               <div className="absolute top-0 left-0 w-1.5 h-full bg-indigo-500" />
-              <div className="flex justify-between items-start mb-10">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <span className="px-3 py-1 bg-indigo-500/10 text-indigo-400 text-[10px] font-black uppercase tracking-widest rounded-full border border-indigo-500/20">Завдання</span>
-                    {assignment.deadline && (<span className={`px-3 py-1 text-[10px] font-black uppercase tracking-widest rounded-full border ${isExpired ? 'bg-red-500/10 text-red-400 border-red-500/20' : 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'}`}>{isExpired ? 'Термін минув' : 'Активно'}</span>)}
+              <div className="flex justify-between items-start mb-6 sm:mb-10">
+                <div className="space-y-3 sm:space-y-4">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                    <span className="px-3 py-1 bg-indigo-500/10 text-indigo-400 text-[9px] sm:text-[10px] font-black uppercase tracking-widest rounded-full border border-indigo-500/20">Завдання</span>
+                    {assignment.deadline && (<span className={`px-3 py-1 text-[9px] sm:text-[10px] font-black uppercase tracking-widest rounded-full border ${isExpired ? 'bg-red-500/10 text-red-400 border-red-500/20' : 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'}`}>{isExpired ? 'Термін минув' : 'Активно'}</span>)}
                   </div>
-                  <h2 className="text-4xl font-black text-white uppercase tracking-tighter leading-none">{assignment.title}</h2>
+                  <h2 className="text-2xl sm:text-4xl font-black text-white uppercase tracking-tighter leading-tight">{assignment.title}</h2>
                 </div>
-                <button onClick={onClose} className="p-3 bg-white/5 rounded-2xl text-slate-400 hover:text-white transition-colors lg:hidden"><X size={24} /></button>
+                <button onClick={onClose} className="p-2 sm:p-3 bg-white/5 rounded-xl sm:rounded-2xl text-slate-400 hover:text-white transition-colors lg:hidden shrink-0 ml-4"><X size={20} className="sm:w-6 sm:h-6" /></button>
               </div>
               <div className="space-y-8">
-                <div className={`grid gap-4 ${assignment.maxGrade ? 'grid-cols-3' : 'grid-cols-2'}`}>
-                  <Card blur="sm" className="p-4 bg-white/5 border-white/5 flex items-center gap-4"><div className="p-3 bg-indigo-500/10 rounded-xl text-indigo-400"><Calendar size={20} /></div><div><p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Термін до</p><p className="text-white font-bold">{assignment.deadline ? new Date(assignment.deadline).toLocaleString() : 'Без терміну'}</p></div></Card>
-                  <Card blur="sm" className="p-4 bg-white/5 border-white/5 flex items-center gap-4"><div className="p-3 bg-indigo-500/10 rounded-xl text-indigo-400"><Clock size={20} /></div><div><p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Створено</p><p className="text-white font-bold">{new Date(assignment.createdAt).toLocaleDateString()}</p></div></Card>
+                <div className={`grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 ${assignment.maxGrade ? 'lg:grid-cols-3' : 'lg:grid-cols-2'}`}>
+                  <Card blur="sm" className="p-3 sm:p-4 bg-white/5 border-white/5 flex items-center gap-4"><div className="p-2 sm:p-3 bg-indigo-500/10 rounded-xl text-indigo-400"><Calendar size={18} className="sm:w-5 sm:h-5" /></div><div><p className="text-[8px] sm:text-[10px] font-black text-slate-500 uppercase tracking-widest">Термін до</p><p className="text-white text-xs sm:text-sm font-bold">{assignment.deadline ? new Date(assignment.deadline).toLocaleString() : 'Без терміну'}</p></div></Card>
+                  <Card blur="sm" className="p-3 sm:p-4 bg-white/5 border-white/5 flex items-center gap-4"><div className="p-2 sm:p-3 bg-indigo-500/10 rounded-xl text-indigo-400"><Clock size={18} className="sm:w-5 sm:h-5" /></div><div><p className="text-[8px] sm:text-[10px] font-black text-slate-500 uppercase tracking-widest">Створено</p><p className="text-white text-xs sm:text-sm font-bold">{new Date(assignment.createdAt).toLocaleDateString()}</p></div></Card>
                   {assignment.maxGrade && (
-                    <Card blur="sm" className="p-4 bg-white/5 border-white/5 flex items-center gap-4 relative overflow-hidden group/grade"><div className="absolute top-0 right-0 p-1 opacity-10 group-hover/grade:opacity-20 transition-opacity"><Star size={40} className="text-purple-400" /></div><div className="p-3 bg-purple-500/10 rounded-xl text-purple-400 relative z-10"><Star size={20} /></div><div className="relative z-10"><p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Макс. бал</p><p className="text-white font-black text-xl">{assignment.maxGrade}</p></div></Card>
+                    <Card blur="sm" className="p-3 sm:p-4 bg-white/5 border-white/5 flex items-center gap-4 relative overflow-hidden group/grade"><div className="absolute top-0 right-0 p-1 opacity-10 group-hover/grade:opacity-20 transition-opacity"><Star size={40} className="text-purple-400" /></div><div className="p-2 sm:p-3 bg-purple-500/10 rounded-xl text-purple-400 relative z-10"><Star size={18} className="sm:w-5 sm:h-5" /></div><div className="relative z-10"><p className="text-[8px] sm:text-[10px] font-black text-slate-500 uppercase tracking-widest">Макс. бал</p><p className="text-white font-black text-lg sm:text-xl">{assignment.maxGrade}</p></div></Card>
                   )}
                 </div>
-                <div className="space-y-4"><h3 className="text-xs font-black text-slate-500 uppercase tracking-widest flex items-center gap-2"><FileText size={14} className="text-indigo-400" /> Опис завдання</h3><div className="text-slate-400 leading-relaxed text-lg bg-white/5 p-6 rounded-3xl border border-white/5 whitespace-pre-wrap">{assignment.description || 'Опис відсутній.'}</div></div>
+                <div className="space-y-4"><h3 className="text-[10px] sm:text-xs font-black text-slate-500 uppercase tracking-widest flex items-center gap-2"><FileText size={14} className="text-indigo-400" /> Опис завдання</h3><div className="text-slate-400 leading-relaxed text-base sm:text-lg bg-white/5 p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-white/5 whitespace-pre-wrap">{assignment.description || 'Опис відсутній.'}</div></div>
                 {assignment.files && assignment.files.length > 0 && (
-                  <div className="space-y-4"><h3 className="text-xs font-black text-slate-500 uppercase tracking-widest">Прикріплені матеріали</h3><div className="grid gap-3">{assignment.files.map((file: any, idx: number) => (<div key={idx} className="p-4 bg-indigo-500/5 rounded-2xl border border-indigo-500/10 flex items-center justify-between group"><div className="flex items-center gap-4"><div className="p-3 bg-indigo-500/10 rounded-xl text-indigo-400"><FileIcon size={24} /></div><div><p className="text-white font-bold truncate max-w-[200px]">{file.name}</p><p className="text-[10px] text-slate-500 font-black uppercase tracking-widest">Матеріал вкладено</p></div></div><div className="flex items-center gap-2"><Button variant="secondary" size="sm" className="p-3 bg-indigo-500/10 text-indigo-400 border-indigo-500/20 hover:bg-indigo-500 hover:text-white transition-all" onClick={() => onOpenPreview({ url: file.url, name: file.name, type: '' })}><Eye size={20} /></Button><a href={file.url} target="_blank" download><Button variant="secondary" size="sm" className="p-3"><Download size={20} /></Button></a></div></div>))}</div></div>
+                  <div className="space-y-4"><h3 className="text-[10px] sm:text-xs font-black text-slate-500 uppercase tracking-widest">Прикріплені матеріали</h3><div className="grid gap-3">{assignment.files.map((file: any, idx: number) => (<div key={idx} className="p-3 sm:p-4 bg-indigo-500/5 rounded-xl sm:rounded-2xl border border-indigo-500/10 flex items-center justify-between group"><div className="flex items-center gap-3 sm:gap-4"><div className="p-2 sm:p-3 bg-indigo-500/10 rounded-xl text-indigo-400"><FileIcon size={20} className="sm:w-6 sm:h-6" /></div><div className="min-w-0"><p className="text-white text-xs sm:text-sm font-bold truncate max-w-[150px] sm:max-w-[200px]">{file.name}</p><p className="text-[8px] sm:text-[9px] text-slate-500 font-black uppercase tracking-widest">Матеріал вкладено</p></div></div><div className="flex items-center gap-2 shrink-0"><Button variant="secondary" size="sm" className="p-2 sm:p-3 bg-indigo-500/10 text-indigo-400 border-indigo-500/20 hover:bg-indigo-500 hover:text-white transition-all" onClick={() => onOpenPreview({ url: file.url, name: file.name, type: '' })}><Eye size={18} /></Button><a href={file.url} target="_blank" download><Button variant="secondary" size="sm" className="p-2 sm:p-3"><Download size={18} /></Button></a></div></div>))}</div></div>
                 )}
               </div>
             </div>
 
-            <div className="lg:w-[450px] w-full bg-slate-900/50 backdrop-blur-3xl flex flex-col relative">
-               <div className="flex p-4 border-b border-white/5 gap-2">
-                  <button onClick={() => setActiveTab('work')} className={`flex-1 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${activeTab === 'work' ? 'bg-indigo-500 text-white shadow-lg shadow-indigo-500/20' : 'text-slate-500 hover:bg-white/5 hover:text-white'}`}>Робота</button>
-                  <button onClick={() => setActiveTab('chat')} className={`flex-1 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${activeTab === 'chat' ? 'bg-indigo-500 text-white shadow-lg shadow-indigo-500/20' : 'text-slate-500 hover:bg-white/5 hover:text-white'}`}>Чат {activeMessages.length > 0 && <span className="ml-1 px-1.5 py-0.5 bg-white/20 rounded-md">{activeMessages.length}</span>}</button>
-                  <button onClick={onClose} className="p-3 bg-white/5 rounded-2xl text-slate-400 hover:text-white transition-colors lg:block hidden ml-auto"><X size={20} /></button>
+            <div className="lg:w-[450px] w-full bg-slate-900/50 backdrop-blur-3xl flex flex-col relative h-[50vh] lg:h-full shrink-0">
+               <div className="flex p-3 sm:p-4 border-b border-white/5 gap-2 shrink-0">
+                  <button onClick={() => setActiveTab('work')} className={`flex-1 py-2 sm:py-3 rounded-xl sm:rounded-2xl text-[9px] sm:text-[10px] font-black uppercase tracking-widest transition-all ${activeTab === 'work' ? 'bg-indigo-500 text-white shadow-lg shadow-indigo-500/20' : 'text-slate-500 hover:bg-white/5 hover:text-white'}`}>Робота</button>
+                  <button onClick={() => setActiveTab('chat')} className={`flex-1 py-2 sm:py-3 rounded-xl sm:rounded-2xl text-[9px] sm:text-[10px] font-black uppercase tracking-widest transition-all ${activeTab === 'chat' ? 'bg-indigo-500 text-white shadow-lg shadow-indigo-500/20' : 'text-slate-500 hover:bg-white/5 hover:text-white'}`}>Чат {activeMessages.length > 0 && <span className="ml-1 px-1.5 py-0.5 bg-white/20 rounded-md">{activeMessages.length}</span>}</button>
+                  <button onClick={onClose} className="p-2 sm:p-3 bg-white/5 rounded-xl sm:rounded-2xl text-slate-400 hover:text-white transition-colors lg:block hidden ml-auto shrink-0"><X size={18} className="sm:w-5 sm:h-5" /></button>
                </div>
 
-               <div className="flex-1 overflow-y-auto custom-scrollbar p-8">
+               <div className="flex-1 overflow-y-auto custom-scrollbar p-4 sm:p-8">
                   {activeTab === 'work' ? (
                     isTeacher ? (
                       <div className="space-y-8">
@@ -375,55 +375,56 @@ export const AssignmentDetailModal = ({
                                {activeMessages.length === 0 ? (
                                  <div className="p-10 text-center space-y-2 opacity-50"><MessageSquare size={32} className="mx-auto text-slate-700" /><p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Повідомлень ще немає</p></div>
                                ) : (
-                                 activeMessages.map((msg: any) => {
-                                   const isMe = String(msg.senderId) === String(user?.id);
-                                   const isEditing = editingMessageId === msg._id;
-                                   const isDeleting = deletingMessageId === msg._id;
-                                   return (
-                                     <div key={msg._id} className={`flex flex-col ${isMe ? 'items-end' : 'items-start'} space-y-1 group`}>
-                                        <div className="flex items-center gap-2">
-                                           {isMe && !isEditing && !isDeleting && (
-                                             <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                                               <button onClick={() => { setEditingMessageId(msg._id); setEditingText(msg.text); }} className="p-1.5 text-slate-500 hover:text-indigo-400 transition-colors"><Edit2 size={12} /></button>
-                                               <button onClick={() => setDeletingMessageId(msg._id)} className="p-1.5 text-slate-500 hover:text-red-400 transition-colors"><Trash2 size={12} /></button>
-                                             </div>
-                                           )}
-                                           {isDeleting && (
-                                              <div className="flex items-center gap-2 bg-red-500/10 border border-red-500/20 rounded-xl px-3 py-1.5 animate-in fade-in zoom-in duration-200">
-                                                <span className="text-[10px] font-black text-red-400 uppercase tracking-widest">Видалити?</span>
-                                                <button onClick={() => handleDeleteMessage(msg._id)} className="text-red-400 hover:text-red-500 transition-colors"><Check size={14} /></button>
-                                                <button onClick={() => setDeletingMessageId(null)} className="text-slate-500 hover:text-white transition-colors"><X size={14} /></button>
+                                  activeMessages.map((msg: any) => {
+                                    const isMe = String(msg.senderId) === String(user?.id);
+                                    const isEditing = editingMessageId === msg._id;
+                                    const isDeleting = deletingMessageId === msg._id;
+                                    return (
+                                      <div key={msg._id} className={`flex flex-col ${isMe ? 'items-end' : 'items-start'} space-y-1 group`}>
+                                         <div className="flex items-center gap-2">
+                                            {isMe && !isEditing && !isDeleting && (
+                                              <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <button onClick={() => { setEditingMessageId(msg._id); setEditingText(msg.text); }} className="p-1.5 text-slate-500 hover:text-indigo-400 transition-colors"><Edit2 size={12} /></button>
+                                                <button onClick={() => setDeletingMessageId(msg._id)} className="p-1.5 text-slate-500 hover:text-red-400 transition-colors"><Trash2 size={12} /></button>
                                               </div>
-                                           )}
-                                           <div className={`max-w-[280px] p-4 rounded-2xl text-sm ${isMe ? 'bg-indigo-600 text-white rounded-br-none shadow-lg shadow-indigo-500/20' : 'bg-white/5 text-slate-300 border border-white/10 rounded-bl-none'}`}>
-                                              {isEditing ? (
-                                                <form onSubmit={handleUpdateMessage} className="flex flex-col gap-2 min-w-[200px]">
-                                                  <textarea autoFocus className="bg-white/10 border border-white/20 rounded-xl p-2 text-white text-xs outline-none focus:border-white/40 transition-all resize-none" value={editingText} onChange={(e) => setEditingText(e.target.value)} />
-                                                  <div className="flex justify-end gap-2"><button type="button" onClick={() => setEditingMessageId(null)} className="p-1 text-white/60 hover:text-white"><RotateCcw size={14} /></button><button type="submit" className="p-1 text-white/60 hover:text-white"><Check size={14} /></button></div>
-                                                </form>
-                                              ) : msg.text}
-                                           </div>
-                                        </div>
-                                        <span className="text-[8px] font-black text-slate-600 uppercase tracking-widest">{msg.senderName} • {new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
-                                     </div>
-                                   );
-                                 })
-                               )}
-                               <div ref={chatEndRef} />
-                            </div>
-                         </div>
-                       )}
-                    </div>
-                  )}
-               </div>
-               {activeTab === 'chat' && (activeStudentId || !isTeacher) && (
-                 <div className="p-6 bg-slate-900/80 backdrop-blur-xl border-t border-white/5">
-                    <form onSubmit={handleSendMessage} className="flex gap-3 bg-white/5 p-2 rounded-2xl border border-white/10 focus-within:border-indigo-500/50 transition-all">
-                       <input type="text" placeholder="Напишіть повідомлення..." className="flex-1 bg-transparent border-none outline-none px-4 py-2 text-white text-sm placeholder:text-slate-600" value={chatMessage} onChange={(e) => setChatMessage(e.target.value)} />
-                       <Button type="submit" size="sm" className="p-3 shadow-indigo-500/20"><Send size={18} /></Button>
-                    </form>
-                 </div>
-               )}
+                                            )}
+                                            {isDeleting && (
+                                               <div className="flex items-center gap-2 bg-red-500/10 border border-red-500/20 rounded-xl px-3 py-1.5 animate-in fade-in zoom-in duration-200">
+                                                 <span className="text-[10px] font-black text-red-400 uppercase tracking-widest">Видалити?</span>
+                                                 <button onClick={() => handleDeleteMessage(msg._id)} className="text-red-400 hover:text-red-500 transition-colors"><Check size={14} /></button>
+                                                 <button onClick={() => setDeletingMessageId(null)} className="text-slate-500 hover:text-white transition-colors"><X size={14} /></button>
+                                               </div>
+                                            )}
+                                            <div className={`max-w-[240px] sm:max-w-[280px] p-3 sm:p-4 rounded-xl sm:rounded-2xl text-[11px] sm:text-sm ${isMe ? 'bg-indigo-600 text-white rounded-br-none shadow-lg shadow-indigo-500/20' : 'bg-white/5 text-slate-300 border border-white/10 rounded-bl-none'}`}>
+                                               {isEditing ? (
+                                                 <form onSubmit={handleUpdateMessage} className="flex flex-col gap-2 min-w-[180px] sm:min-w-[200px]">
+                                                   <textarea autoFocus className="bg-white/10 border border-white/20 rounded-xl p-2 text-white text-[10px] sm:text-xs outline-none focus:border-white/40 transition-all resize-none" value={editingText} onChange={(e) => setEditingText(e.target.value)} />
+                                                   <div className="flex justify-end gap-2"><button type="button" onClick={() => setEditingMessageId(null)} className="p-1 text-white/60 hover:text-white"><RotateCcw size={14} /></button><button type="submit" className="p-1 text-white/60 hover:text-white"><Check size={14} /></button></div>
+                                                 </form>
+                                               ) : msg.text}
+                                            </div>
+                                         </div>
+                                         <span className="text-[7px] sm:text-[8px] font-black text-slate-600 uppercase tracking-widest">{msg.senderName} • {new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                                      </div>
+                                    );
+                                  })
+                                )}
+                                <div ref={chatEndRef} />
+                             </div>
+                          </div>
+                        )}
+                     </div>
+                   )}
+                </div>
+                {activeTab === 'chat' && (activeStudentId || !isTeacher) && (
+                  <div className="p-4 sm:p-6 bg-slate-900/80 backdrop-blur-xl border-t border-white/5 shrink-0">
+                     <form onSubmit={handleSendMessage} className="flex gap-2 sm:gap-3 bg-white/5 p-1.5 sm:p-2 rounded-xl sm:rounded-2xl border border-white/10 focus-within:border-indigo-500/50 transition-all">
+                        <input type="text" placeholder="Повідомлення..." className="flex-1 bg-transparent border-none outline-none px-3 sm:px-4 py-1.5 sm:py-2 text-white text-xs sm:text-sm placeholder:text-slate-600" value={chatMessage} onChange={(e) => setChatMessage(e.target.value)} />
+                        <Button type="submit" size="sm" className="p-2 sm:p-3 shadow-indigo-500/20 rounded-lg sm:rounded-xl"><Send size={16} className="sm:w-5 sm:h-5" /></Button>
+                     </form>
+                  </div>
+                )}
+
             </div>
           </motion.div>
         </div>

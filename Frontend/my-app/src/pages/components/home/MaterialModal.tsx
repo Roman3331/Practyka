@@ -82,24 +82,25 @@ export const MaterialModal = ({ isOpen, onClose, onSubmit, initialData }: Materi
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-xl"
+            className="relative w-full max-w-xl max-h-[90vh] overflow-y-auto custom-scrollbar rounded-2xl sm:rounded-3xl"
           >
-            <Card blur="lg" className="p-8 border-white/10 shadow-2xl overflow-hidden relative group">
+            <Card blur="lg" className="p-5 sm:p-8 border-white/10 shadow-2xl relative group">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 to-emerald-500" />
               
-              <div className="flex justify-between items-center mb-10">
+              <div className="flex justify-between items-start mb-6 sm:mb-10">
                 <div className="space-y-1">
-                  <h2 className="text-3xl font-black text-white uppercase tracking-tighter">
+                  <h2 className="text-2xl sm:text-3xl font-black text-white uppercase tracking-tighter leading-tight">
                     {initialData ? 'Редагувати матеріал' : 'Новий матеріал'}
                   </h2>
-                  <p className="text-slate-500 text-xs font-black uppercase tracking-widest">
+                  <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest">
                     {initialData ? 'Оновіть назву та список файлів' : 'Завантажте навчальні матеріали для учнів'}
                   </p>
                 </div>
-                <button onClick={onClose} className="p-3 bg-white/5 rounded-2xl text-slate-400 hover:text-white transition-colors hover:bg-white/10">
-                  <X size={24} />
+                <button onClick={onClose} className="p-2 sm:p-3 bg-white/5 rounded-xl sm:rounded-2xl text-slate-400 hover:text-white transition-colors hover:bg-white/10 shrink-0 ml-4">
+                  <X size={20} className="sm:w-6 sm:h-6" />
                 </button>
               </div>
+
 
               <form onSubmit={handleSubmit} className="space-y-8">
                 <div className="grid gap-6">

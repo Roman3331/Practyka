@@ -12,9 +12,10 @@ export default function TeacherCoursesPage() {
   return (
     <div className="flex min-h-screen gradient-bg">
       <SideBar items={teacherNavItems} />
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col min-w-0">
         <Header title="Керування Предметами" />
-        <main className="p-8 overflow-y-auto">
+        <main className="p-4 sm:p-8">
+
           <SubjectManagement />
         </main>
       </div>
